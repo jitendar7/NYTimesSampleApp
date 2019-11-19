@@ -1,0 +1,74 @@
+apply plugin: 'com.android.application'
+apply plugin: 'org.sonarqube'
+
+apply from: "$project.rootDir/tools/script-lint.gradle"
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "test.com.nytimes"
+        minSdkVersion 21
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    dataBinding {
+        enabled = true
+    }
+
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
+
+    sonarqube {
+        properties {
+            property "sonar.sources", "src/main"
+            property "sonar.projectName", "NyTimesSample"
+            property "sonar.projectVersion", "1.0.0"
+            property "sonar.projectDescription", "NYTimes Sample Application"
+        }
+    }
+
+}
+
+dependencies {
+
+    final KODEIN_VERSION = '5.0.0'
+
+
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+
+    //AndroidX libraries
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'com.google.android.material:material:1.0.0'
+
+    //Android Architecture components
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0'
+
+    //Unit test dependencies
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'org.mockito:mockito-core:3.1.0'
+    androidTestImplementation 'androidx.test:rules:1.2.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    //Kodein dependency injection library
+    implementation "org.kodein.di:kodein-di-generic-jvm:${KODEIN_VERSION}"
+    implementation "org.kodein.di:kodein-di-framework-android:${KODEIN_VERSION}"
+
+    //Retrofit2
+    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+}

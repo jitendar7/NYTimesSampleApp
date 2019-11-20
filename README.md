@@ -32,6 +32,11 @@ After the first network request, the response is stored in the cache - in memory
 - MVVM Architecture 
 
 
+## Screenshots 
+
+![alt text](https://github.com/jitendar7/NYTimesSampleApp/blob/master/screenshots/device-2019-11-20-042420.png)
+
+
 ## How to Build? 
 
 Open the terminal and type in the below command to generate

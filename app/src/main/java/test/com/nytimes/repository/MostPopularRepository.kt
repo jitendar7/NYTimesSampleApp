@@ -23,7 +23,7 @@ class MostPopularRepository(private val service: NYTimesService) {
     }
 
 
-    private fun buildCachedLiveData(mostPopularResponse: MostPopularResponse): LiveData<Resource<MostPopularResponse>>{
+    fun buildCachedLiveData(mostPopularResponse: MostPopularResponse): LiveData<Resource<MostPopularResponse>>{
         var mutableLiveData= MutableLiveData<Resource<MostPopularResponse>>()
         mutableLiveData.value = Resource.success(mostPopularResponse)
 

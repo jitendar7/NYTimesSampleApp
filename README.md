@@ -3,7 +3,7 @@
 Sample Android App with developed in Kotlin using MVVM Architecture
 
 
-Hightlights:
+##  Hightlights:
 
 - MVVM Architecture Pattern
 - Using Architectural components ( LiveData, DataBinding, LifeCycle)
@@ -16,7 +16,7 @@ The application has inbuilt cache support to avoid redundant network requests.
 After the first network request, the response is stored in the cache - in memory. 
 
 
-Best Android App Development Practices followed
+## Best Android App Development Practices followed
 
 - Written in Pure Kotlin
 - Kodein for dependency injection
@@ -27,30 +27,36 @@ Best Android App Development Practices followed
 - MVVM Architecture 
 
 
-How to Build? 
+## How to Build? 
 
 Open the terminal and type in the below command to generate
 
 for debug build
+```
 ./gradlew assembleDebug
+```
 
 
 for release build
+```
 ./gradlew assembleRelease
+```
 
-
-Generating Sonarqube report
+## Generating Sonarqube report
 Make sure in build.gradle ( app level ), we have the configuration of sonarqube as per our server configuration
 
 Add sonarqube server url in gradle.properties
+```
 systemProp.sonar.host.url=http://localhost:9000
+```
 
-
-Generating code coverage report
+## Generating code coverage report
 
 use the below command 
+```
 ./gradlew clean jacocoTestReport
-
+```
 the reports are generated on the following path
-
+```
 app/build/reports
+```

@@ -15,6 +15,11 @@ Sample Android App with developed in Kotlin using MVVM Architecture
 The application has inbuilt cache support to avoid redundant network requests. 
 After the first network request, the response is stored in the cache - in memory. 
 
+## Architecture
+
+![alt text](https://github.com/jitendar7/NYTimesSampleApp/blob/master/architecture/MVVM_Architecture.png)
+
+
 
 ## Best Android App Development Practices followed
 

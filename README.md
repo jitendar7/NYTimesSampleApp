@@ -36,6 +36,8 @@ After the first network request, the response is stored in the cache - in memory
 
 ![alt text](https://github.com/jitendar7/NYTimesSampleApp/blob/master/screenshots/device-2019-11-20-042420.png)
 
+![alt text](https://github.com/jitendar7/NYTimesSampleApp/blob/master/screenshots/device-2019-11-20-042454.png)
+
 
 ## How to Build? 
 

@@ -1,12 +1,12 @@
 # NYTimesSample
 
-Sample Android App with developed in Kotlin using MVVM Architecture
+Sample Android App developed in Kotlin using MVVM Architecture
 
 
 ##  Hightlights:
 
 - MVVM Architecture Pattern
-- Using Architectural components ( LiveData, DataBinding, LifeCycle)
+- Using Architectural components ( LiveData, DataBinding, LifeCycleAware)
 - Retrofit2 Network Library
 - Caching support
 - Usage of AndroidX libraries
@@ -14,6 +14,7 @@ Sample Android App with developed in Kotlin using MVVM Architecture
 
 The application has inbuilt cache support to avoid redundant network requests. 
 After the first network request, the response is stored in the cache - in memory. 
+We can use Room to store the data, but with small amounts of data, inmemory is preferrable
 
 ## Architecture
 
@@ -23,12 +24,12 @@ After the first network request, the response is stored in the cache - in memory
 
 ## Best Android App Development Practices followed
 
-- Written in Pure Kotlin
+- Written in Kotlin
 - Kodein for dependency injection
 - JUnit4, Mockito & MockWebServer for writing the testcases
 - Repository Pattern
 - Testable code 
-- Latest Retrofit2 library for Networking
+- Retrofit2 library for Networking
 - MVVM Architecture 
 
 

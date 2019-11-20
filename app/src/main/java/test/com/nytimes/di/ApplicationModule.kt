@@ -5,8 +5,8 @@ import org.kodein.di.generic.bind
 import org.kodein.di.generic.instance
 import org.kodein.di.generic.singleton
 import test.com.nytimes.repository.MostPopularRepository
-import test.com.nytimes.remote.APIClient
-import test.com.nytimes.remote.NYTimesService
+import test.com.nytimes.data.remote.APIClient
+import test.com.nytimes.data.remote.NYTimesService
 import test.com.nytimes.viewmodel.ViewModelFactory
 
 

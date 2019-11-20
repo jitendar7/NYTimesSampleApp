@@ -14,18 +14,18 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main.*
 import org.kodein.di.generic.instance
+import test.com.nytimes.API_KEY
+import test.com.nytimes.MOST_POPULAR_ITEM
 import test.com.nytimes.R
 import test.com.nytimes.databinding.ActivityMainBinding
 import test.com.nytimes.model.MostPopularParameters
 import test.com.nytimes.model.MostPopularResult
-import test.com.nytimes.remote.Resource
+import test.com.nytimes.data.remote.Resource
 import test.com.nytimes.view.adapter.MostPopularRecyclerViewAdapter
 import test.com.nytimes.viewmodel.MostPopularViewModel
 import test.com.nytimes.viewmodel.ViewModelFactory
 
-
-const val MOST_POPULAR_ITEM = "MOST_POPULAR_ITEM"
-
+// First Screen which displays the results of NewYorkTimes most popular articles
 class MainActivity : BaseActivity(), MostPopularRecyclerViewAdapter.OnItemClickListener {
 
     private val viewModelFactory: ViewModelFactory by instance()
@@ -34,35 +34,43 @@ class MainActivity : BaseActivity(), MostPopularRecyclerViewAdapter.OnItemClickL
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        viewModel = ViewModelProviders.of(this,viewModelFactory)
+        viewModel = ViewModelProviders.of(this, viewModelFactory)
                 .get(MostPopularViewModel::class.java)
 
         val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
         binding.appBarMain.included.viewModel = viewModel
         binding.setLifecycleOwner(this)
 
-        setSupportActionBar(toolbar)
+        initializeRequestParameters()
+        setUpWithObservables()
+    }
 
-        viewModel.parameters.value = MostPopularParameters(
-                                     "all-sections",
-                                      7,
-                                       getString(R.string.nytimes_api_key))
+    private fun initializeRequestParameters() {
+        viewModel.initialize(MostPopularParameters(
+                "all-sections",
+                7,
+                API_KEY))
+    }
+
+    private fun setUpWithObservables() {
+
+        setSupportActionBar(toolbar)
 
         val adapter = MostPopularRecyclerViewAdapter()
         adapter.setOnItemClickListener(this)
         recyclerView.adapter = adapter
 
         viewModel.mostPopular.observe(this, Observer {
-            when(it?.status){
-                Resource.Status.LOADING -> viewModel.hideProgress.value = false
+            when (it?.status) {
+                Resource.Status.LOADING -> viewModel.setProgressValue(false)
                 Resource.Status.ERROR -> {
-                    viewModel.hideProgress.value = true
+                    viewModel.setProgressValue(true)
                     Snackbar.make(drawer_layout, it?.throwable?.message.toString(), Snackbar.LENGTH_LONG).show()
                 }
                 Resource.Status.SUCCESS -> {
-                    viewModel.hideProgress.value = true
+                    viewModel.setProgressValue(true)
                     it.data?.let {
-                        adapter.setPopularList(it.resultList)
+                        adapter.setPopularList(it.results)
                     }
                 }
             }
@@ -91,7 +99,7 @@ class MainActivity : BaseActivity(), MostPopularRecyclerViewAdapter.OnItemClickL
         val intent = Intent(this, DetailActivity::class.java)
 
         val args = Bundle()
-        args.putParcelable(MOST_POPULAR_ITEM,mostPopularResult)
+        args.putParcelable(MOST_POPULAR_ITEM, mostPopularResult)
         intent.putExtras(args)
 
         startActivity(intent)

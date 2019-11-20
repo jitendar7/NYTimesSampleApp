@@ -1,4 +1,4 @@
-package test.com.nytimes.remote
+package test.com.nytimes.data.remote
 
 class Resource<T> private constructor(val status: Resource.Status,
                                       val data: T?,

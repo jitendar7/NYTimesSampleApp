@@ -4,7 +4,8 @@ import androidx.lifecycle.LiveData
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import test.com.nytimes.remote.Resource
+import test.com.nytimes.data.cache.CacheManager
+import test.com.nytimes.data.remote.Resource
 
 class PopularListLiveData<MostPopularResponse>(private val mostPopular: Call<MostPopularResponse>) :
         LiveData<Resource<MostPopularResponse>>() {
@@ -24,6 +25,7 @@ class PopularListLiveData<MostPopularResponse>(private val mostPopular: Call<Mos
 
                 override fun onResponse(call: Call<MostPopularResponse>?, response: Response<MostPopularResponse>?) {
                     if (response != null) {
+                        CacheManager.save(response.body() as test.com.nytimes.model.MostPopularResponse)
                         value = Resource.success(response.body())
                     } else
                         value = Resource.error(Exception("null data"))

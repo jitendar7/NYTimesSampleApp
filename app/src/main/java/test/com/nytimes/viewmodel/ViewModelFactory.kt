@@ -9,5 +9,4 @@ class ViewModelFactory(private val mostPopularRepository: MostPopularRepository)
         MostPopularViewModel::class.java -> MostPopularViewModel(mostPopularRepository) as T
         else -> throw IllegalArgumentException("Unknow model class.")
     }
-
 }

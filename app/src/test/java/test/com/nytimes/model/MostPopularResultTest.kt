@@ -1,18 +1,17 @@
 package test.com.nytimes.model
 
 import android.os.Parcel
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNotNull
 import org.junit.Test
-import org.junit.Assert.*
-import org.junit.runner.RunWith
-import org.mockito.junit.MockitoJUnitRunner
+import test.com.nytimes.MockParcel
 
-@RunWith(MockitoJUnitRunner::class)
 class MostPopularResultTest {
 
     private lateinit var mostPopularResult: MostPopularResult
 
     @Test
-    fun testModelData(){
+    fun testModelData() {
 
         mostPopularResult = MostPopularResult(
                 url = "org.newyorktimes",
@@ -27,13 +26,21 @@ class MostPopularResultTest {
                 source = "data_source"
         )
 
-        var parcel: Parcel = Parcel.obtain()
-        mostPopularResult.writeToParcel(parcel,mostPopularResult.describeContents())
+        var parcel: Parcel = MockParcel.obtain()
+        mostPopularResult.writeToParcel(parcel, mostPopularResult.describeContents())
         parcel.setDataPosition(0)
 
-        val mostPopularResultParcel = MostPopularResult.CREATOR.createFromParcel(parcel)
-        assertEquals(mostPopularResultParcel.url,mostPopularResult.url)
-
+        val mostPopularResultParcel = MostPopularResult.createFromParcel(parcel)
+        assertEquals(mostPopularResultParcel.url, mostPopularResult.url)
+        assertNotNull(mostPopularResultParcel.adx_keywords)
+        assertNotNull(mostPopularResultParcel.column)
+        assertNotNull(mostPopularResultParcel.section)
+        assertNotNull(mostPopularResultParcel.byline)
+        assertNotNull(mostPopularResultParcel.type)
+        assertNotNull(mostPopularResultParcel.title)
+        assertNotNull(mostPopularResultParcel.abstract)
+        assertNotNull(mostPopularResultParcel.published_date)
+        assertNotNull(mostPopularResultParcel.source)
     }
 
 }

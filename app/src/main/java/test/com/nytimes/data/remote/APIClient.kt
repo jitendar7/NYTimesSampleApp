@@ -1,4 +1,4 @@
-package test.com.nytimes.remote
+package test.com.nytimes.data.remote
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

@@ -3,12 +3,14 @@ package test.com.nytimes.view.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.most_popular_item_list.view.*
 import test.com.nytimes.R
 import test.com.nytimes.model.MostPopularResult
 import java.util.*
 
-class MostPopularRecyclerViewAdapter() : androidx.recyclerview.widget.RecyclerView.Adapter<MostPopularRecyclerViewAdapter.ViewHolder>() {
+class MostPopularRecyclerViewAdapter : RecyclerView.Adapter<MostPopularRecyclerViewAdapter.ViewHolder>() {
+
     private var totalList: List<MostPopularResult> = Collections.emptyList()
     private var itemClickListener: OnItemClickListener? = null
 
@@ -32,7 +34,7 @@ class MostPopularRecyclerViewAdapter() : androidx.recyclerview.widget.RecyclerVi
         notifyDataSetChanged()
     }
 
-    inner class ViewHolder(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(result: MostPopularResult) {
             itemView.title.text = result.title
             itemView.byLine.text = result.byline

@@ -12,14 +12,14 @@ class MostPopularResponseTest {
         mostPopularResponse = MostPopularResponse(
                 status = "SUCCESS",
                 copyright = "copyright@jitendar",
-                numOfResults = 12,
-                resultList = listOf()
+                num_results = 12,
+                results = listOf()
         )
 
         assertNotNull(mostPopularResponse.status)
         assertNotNull(mostPopularResponse.copyright)
-        assertNotNull(mostPopularResponse.numOfResults)
-        assertNotNull(mostPopularResponse.resultList)
+        assertNotNull(mostPopularResponse.num_results)
+        assertNotNull(mostPopularResponse.results)
     }
 
 

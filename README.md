@@ -1,14 +1,56 @@
 # NYTimesSample
 
-The app is build with MVVM architecture, using kodein for Dependency Injection
-
-The app is developed using Kotlin, using some of the architectural components
-- LiveData
-- ViewModel
-- DataBinding
-
-For NYTimes API calls, used Retrofit
+Sample Android App with developed in Kotlin using MVVM Architecture
 
 
-The code contains espresso testcases for instrumentation testing ,
-script-lint.gradle for static code analysis
+Hightlights:
+
+- MVVM Architecture Pattern
+- Using Architectural components ( LiveData, DataBinding, LifeCycle)
+- Retrofit2 Network Library
+- Caching support
+- Usage of AndroidX libraries
+- SonarQube integration
+
+The application has inbuilt cache support to avoid redundant network requests. 
+After the first network request, the response is stored in the cache - in memory. 
+
+
+Best Android App Development Practices followed
+
+- Written in Pure Kotlin
+- Kodein for dependency injection
+- JUnit4, Mockito & MockWebServer for writing the testcases
+- Repository Pattern
+- Testable code 
+- Latest Retrofit2 library for Networking
+- MVVM Architecture 
+
+
+How to Build? 
+
+Open the terminal and type in the below command to generate
+
+for debug build
+./gradlew assembleDebug
+
+
+for release build
+./gradlew assembleRelease
+
+
+Generating Sonarqube report
+Make sure in build.gradle ( app level ), we have the configuration of sonarqube as per our server configuration
+
+Add sonarqube server url in gradle.properties
+systemProp.sonar.host.url=http://localhost:9000
+
+
+Generating code coverage report
+
+use the below command 
+./gradlew clean jacocoTestReport
+
+the reports are generated on the following path
+
+app/build/reports
